@@ -24,7 +24,7 @@ namespace OnlineEgitim.AdminAPI.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] RegisterRequest request)
         {
-            if (_context.Users.Any(u => u.Email == request.Email))
+            if (_context.Users.Any(u => u.Email.ToLower() == request.Email.ToLower()))
                 return BadRequest(new { message = "Bu email zaten kayıtlı!" });
 
             // Şifreyi BCrypt ile hashle
@@ -41,7 +41,7 @@ namespace OnlineEgitim.AdminAPI.Controllers
             _context.Users.Add(user);
             _context.SaveChanges();
 
-            // ✅ Artık JSON dönüyoruz
+            // ✅ JSON response
             return Ok(new
             {
                 message = "Kayıt başarılı! 🎉",
@@ -70,15 +70,15 @@ namespace OnlineEgitim.AdminAPI.Controllers
     // ✅ DTO'lar
     public class LoginRequest
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public required string Email { get; set; }
+        public required string Password { get; set; }
     }
 
     public class RegisterRequest
     {
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
+        public required string Name { get; set; }
+        public required string Email { get; set; }
+        public required string Password { get; set; }
         public string? Role { get; set; }
     }
 }

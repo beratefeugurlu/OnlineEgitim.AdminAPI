@@ -4,7 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using OnlineEgitim.AdminAPI.Data;
 using OnlineEgitim.AdminAPI.Services;
 using OnlineEgitim.AdminAPI.Settings;
-using OnlineEgitim.AdminAPI.Repositories;  
+using OnlineEgitim.AdminAPI.Repositories;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +23,7 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1"
     });
 
-    // ? JWT Security Tanýmý
+    // JWT Security Tanýmý
     c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -71,23 +71,23 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = jwtSettings.Issuer,
-        ValidAudience = jwtSettings.Audience,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.Key))
+        ValidIssuer = jwtSettings!.Issuer,
+        ValidAudience = jwtSettings!.Audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings!.Key))
     };
 });
 
 // Token Service
 builder.Services.AddScoped<ITokenService, TokenService>();
 
-// CORS
+// CORS sadece Angular için açýldý
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("AllowAngular", policy =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        policy.WithOrigins("http://localhost:4200") // Angular dev server
+              .AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
 
@@ -103,7 +103,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Middleware sýrasý önemli
-app.UseCors("AllowAll");
+app.UseCors("AllowAngular");
 app.UseAuthentication();
 app.UseAuthorization();
 
