@@ -169,3 +169,6 @@ C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\OnlineEgitim.AdminAPI.pdb
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\OnlineEgitim.AdminAPI.genruntimeconfig.cache
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\ref\OnlineEgitim.AdminAPI.dll
+C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\OnlineEgitim.AdminAPI.sourcelink.json
+C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\BCrypt.Net-Next.dll

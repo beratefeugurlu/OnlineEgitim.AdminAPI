@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineEgitim.AdminAPI.Models;
-using System.Collections.Generic;
 
 namespace OnlineEgitim.AdminAPI.Data
 {
@@ -9,5 +8,9 @@ namespace OnlineEgitim.AdminAPI.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Course> Courses { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
     }
 }

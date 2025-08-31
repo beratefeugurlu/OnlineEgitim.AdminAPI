@@ -7,5 +7,7 @@
         public string? Description { get; set; } // opsiyonel alan ,string? null olabilir demektir!!
         public decimal Price { get; set; }
         public DateTime CreatedDate { get; set; }
+
+        
     }
 }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OnlineEgitim.AdminAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+68759a923d4e12026450e43916a2cf1c0d996203")]
 [assembly: System.Reflection.AssemblyProductAttribute("OnlineEgitim.AdminAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OnlineEgitim.AdminAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

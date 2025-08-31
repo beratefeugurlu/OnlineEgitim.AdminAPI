@@ -1,70 +1,74 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnlineEgitim.AdminAPI.Data;
 using OnlineEgitim.AdminAPI.Models;
+using OnlineEgitim.AdminAPI.Repositories;
 
 namespace OnlineEgitim.AdminAPI.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class CourseController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly IRepository<Course> _courseRepository;
 
-        public CourseController(AppDbContext context)
+        public CourseController(IRepository<Course> courseRepository)
         {
-            _context = context;
+            _courseRepository = courseRepository;
         }
 
         // GET: api/Course
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var courses = _context.Courses.ToList();
+            var courses = await _courseRepository.GetAllAsync();
             return Ok(courses);
         }
 
         // GET: api/Course/5
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var course = _context.Courses.Find(id);
+            var course = await _courseRepository.GetByIdAsync(id);
             if (course == null) return NotFound();
             return Ok(course);
         }
 
         // POST: api/Course
         [HttpPost]
-        public IActionResult Create([FromBody] Course course)
+        public async Task<IActionResult> Create([FromBody] Course course)
         {
-            _context.Courses.Add(course);
-            _context.SaveChanges();
+            await _courseRepository.AddAsync(course);
+            await _courseRepository.SaveChangesAsync();
             return CreatedAtAction(nameof(GetById), new { id = course.Id }, course);
         }
 
         // PUT: api/Course/5
         [HttpPut("{id}")]
-        public IActionResult Update(int id, [FromBody] Course updatedCourse)
+        public async Task<IActionResult> Update(int id, [FromBody] Course updatedCourse)
         {
-            var course = _context.Courses.Find(id);
+            var course = await _courseRepository.GetByIdAsync(id);
             if (course == null) return NotFound();
 
             course.Title = updatedCourse.Title;
             course.Description = updatedCourse.Description;
 
-            _context.SaveChanges();
+            _courseRepository.Update(course);
+            await _courseRepository.SaveChangesAsync();
+
             return NoContent();
         }
 
         // DELETE: api/Course/5
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var course = _context.Courses.Find(id);
+            var course = await _courseRepository.GetByIdAsync(id);
             if (course == null) return NotFound();
 
-            _context.Courses.Remove(course);
-            _context.SaveChanges();
+            _courseRepository.Delete(course);
+            await _courseRepository.SaveChangesAsync();
+
             return NoContent();
         }
     }
 }
+
