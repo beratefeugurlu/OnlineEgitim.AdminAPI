@@ -217,19 +217,9 @@
   },
   {
     "ContainingType": "OnlineEgitim.AdminAPI.Controllers.OrderController",
-    "Method": "GetAllOrders",
-    "RelativePath": "api/Order",
+    "Method": "GetOrdersByUser",
+    "RelativePath": "api/Order/User/{userId}",
     "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OnlineEgitim.AdminAPI.Controllers.OrderController",
-    "Method": "Checkout",
-    "RelativePath": "api/Order/checkout/{userId}",
-    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -242,16 +232,16 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "OnlineEgitim.AdminAPI.Controllers.OrderController",
-    "Method": "GetUserOrders",
-    "RelativePath": "api/Order/user/{userId}",
-    "HttpMethod": "GET",
+    "ContainingType": "OnlineEgitim.AdminAPI.Controllers.PaymentController",
+    "Method": "ProcessPayment",
+    "RelativePath": "api/Payment",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "userId",
-        "Type": "System.Int32",
+        "Name": "request",
+        "Type": "OnlineEgitim.AdminAPI.Models.PaymentRequest",
         "IsRequired": true
       }
     ],

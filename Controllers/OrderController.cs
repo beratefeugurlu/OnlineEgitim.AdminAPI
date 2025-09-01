@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using OnlineEgitim.AdminAPI.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnlineEgitim.AdminAPI.Models;
+using OnlineEgitim.AdminAPI.Repositories;
 
 namespace OnlineEgitim.AdminAPI.Controllers
 {
@@ -10,78 +8,39 @@ namespace OnlineEgitim.AdminAPI.Controllers
     [Route("api/[controller]")]
     public class OrderController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly IRepository<Order> _orderRepository;
+        private readonly IRepository<OrderItem> _orderItemRepository;
+        private readonly IRepository<Course> _courseRepository;
 
-        public OrderController(AppDbContext context)
+        public OrderController(
+            IRepository<Order> orderRepository,
+            IRepository<OrderItem> orderItemRepository,
+            IRepository<Course> courseRepository)
         {
-            _context = context;
+            _orderRepository = orderRepository;
+            _orderItemRepository = orderItemRepository;
+            _courseRepository = courseRepository;
         }
 
-        // GET: api/Order/user/1 → Kullanıcının siparişleri
-        [HttpGet("user/{userId}")]
-        public async Task<IActionResult> GetUserOrders(int userId)
+        // Kullanıcının satın aldığı kursları getir
+        [HttpGet("User/{userId}")]
+        public async Task<IActionResult> GetOrdersByUser(int userId)
         {
-            var orders = await _context.Orders
-                .Include(o => o.Items)
-                .ThenInclude(i => i.Course)
-                .Where(o => o.UserId == userId)
-                .ToListAsync();
+            var orders = await _orderRepository.GetAllAsync();
+            var userOrders = orders.Where(o => o.UserId == userId).ToList();
 
-            return Ok(orders);
-        }
+            var orderItems = await _orderItemRepository.GetAllAsync();
+            var userItems = orderItems.Where(i => userOrders.Any(o => o.Id == i.OrderId)).ToList();
 
-        // GET: api/Order → Tüm siparişler (sadece Admin)
-        [Authorize(Roles = "Admin")]
-        [HttpGet]
-        public async Task<IActionResult> GetAllOrders()
-        {
-            var orders = await _context.Orders
-                .Include(o => o.User)
-                .Include(o => o.Items)
-                .ThenInclude(i => i.Course)
-                .ToListAsync();
-
-            return Ok(orders);
-        }
-
-        // POST: api/Order/checkout/{userId} → Kullanıcının sepetini siparişe dönüştür
-        [HttpPost("checkout/{userId}")]
-        public async Task<IActionResult> Checkout(int userId)
-        {
-            var cartItems = await _context.Carts
-                .Include(c => c.Course)
-                .Where(c => c.UserId == userId)
-                .ToListAsync();
-
-            if (!cartItems.Any())
-                return BadRequest("Sepet boş, sipariş oluşturulamadı.");
-
-            var order = new Order
+            var purchasedCourses = new List<Course>();
+            foreach (var item in userItems)
             {
-                UserId = userId,
-                OrderDate = DateTime.UtcNow,
-                Items = new List<OrderItem>()
-            };
-
-            // Sepetteki ürünleri OrderItem’a dönüştür
-            foreach (var c in cartItems)
-            {
-                order.Items.Add(new OrderItem
-                {
-                    CourseId = c.CourseId,
-                    Quantity = c.Quantity,
-                    Order = order   // ✅ Order ile ilişkiyi kur
-                });
+                var course = await _courseRepository.GetByIdAsync(item.CourseId);
+                if (course != null)
+                    purchasedCourses.Add(course);
             }
 
-            _context.Orders.Add(order);
-
-            // ✅ siparişten sonra sepet temizlensin
-            _context.Carts.RemoveRange(cartItems);
-
-            await _context.SaveChangesAsync();
-
-            return Ok(order);
+            return Ok(purchasedCourses);
         }
     }
 }

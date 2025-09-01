@@ -45,9 +45,12 @@ namespace OnlineEgitim.AdminAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Course course)
         {
-            course.IsApproved = false; // ✅ Yeni kurslar otomatik "onaysız" gelecek
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            course.IsApproved = false; // Yeni kurslar otomatik onaysız
             await _courseRepository.AddAsync(course);
             await _courseRepository.SaveChangesAsync();
+
             return CreatedAtAction(nameof(GetById), new { id = course.Id }, course);
         }
 
@@ -69,7 +72,7 @@ namespace OnlineEgitim.AdminAPI.Controllers
             return NoContent();
         }
 
-        // ✅ PATCH: api/Course/approve/5 → Admin kurs onayı
+        // PATCH: api/Course/approve/5
         [HttpPatch("approve/{id}")]
         public async Task<IActionResult> ApproveCourse(int id)
         {
@@ -97,3 +100,4 @@ namespace OnlineEgitim.AdminAPI.Controllers
         }
     }
 }
+

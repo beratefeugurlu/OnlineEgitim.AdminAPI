@@ -8,7 +8,9 @@ C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\OnlineEgitim.AdminAPI.pdb
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\BCrypt.Net-Next.dll
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Humanizer.dll
+C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Microsoft.Build.Locator.dll
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
@@ -154,6 +156,7 @@ C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\OnlineEgitim.AdminAPI.csproj.CoreCompileInputs.cache
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\OnlineEgitim.AdminAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\OnlineEgitim.AdminAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\OnlineEgitim.AdminAPI.sourcelink.json
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\rjimswa.dswa.cache.json
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
@@ -169,6 +172,3 @@ C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\OnlineEgitim.AdminAPI.pdb
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\OnlineEgitim.AdminAPI.genruntimeconfig.cache
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\ref\OnlineEgitim.AdminAPI.dll
-C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\obj\Debug\net8.0\OnlineEgitim.AdminAPI.sourcelink.json
-C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\BCrypt.Net-Next.dll

@@ -2,7 +2,7 @@
   "openapi": "3.0.1",
   "info": {
     "title": "OnlineEgitim.AdminAPI",
-    "version": "v1"
+    "version": "1.0"
   },
   "paths": {
     "/api/Auth/register": {
@@ -352,7 +352,7 @@
         }
       }
     },
-    "/api/Order/user/{userId}": {
+    "/api/Order/User/{userId}": {
       "get": {
         "tags": [
           "Order"
@@ -375,34 +375,30 @@
         }
       }
     },
-    "/api/Order": {
-      "get": {
-        "tags": [
-          "Order"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Order/checkout/{userId}": {
+    "/api/Payment": {
       "post": {
         "tags": [
-          "Order"
+          "Payment"
         ],
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentRequest"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -677,6 +673,36 @@
         },
         "additionalProperties": false
       },
+      "PaymentRequest": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseIds": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
+          },
+          "cardNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "expiryDate": {
+            "type": "string",
+            "nullable": true
+          },
+          "cvv": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "RegisterRequest": {
         "required": [
           "email",
@@ -753,19 +779,6 @@
         },
         "additionalProperties": false
       }
-    },
-    "securitySchemes": {
-      "Bearer": {
-        "type": "apiKey",
-        "description": "JWT Authorization header. \r\n\r\n 'Bearer' yazıp boşluk bırak sonra token yapıştır. \r\n\r\n Örnek: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...\"",
-        "name": "Authorization",
-        "in": "header"
-      }
     }
-  },
-  "security": [
-    {
-      "Bearer": [ ]
-    }
-  ]
+  }
 }
