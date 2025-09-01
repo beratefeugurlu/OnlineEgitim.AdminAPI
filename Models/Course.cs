@@ -4,10 +4,13 @@
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public string? Description { get; set; } // opsiyonel alan ,string? null olabilir demektir!!
+        public string Instructor { get; set; }
         public decimal Price { get; set; }
-        public DateTime CreatedDate { get; set; }
 
-        
+        // Açıklama eklendi
+        public string Description { get; set; }
+
+        // OrderItem ilişkisi
+        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }
