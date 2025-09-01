@@ -233,6 +233,18 @@
         }
       }
     },
+    "/api/Course/approved": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Course/{id}": {
       "get": {
         "tags": [
@@ -296,6 +308,29 @@
         }
       },
       "delete": {
+        "tags": [
+          "Course"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Course/approve/{id}": {
+      "patch": {
         "tags": [
           "Course"
         ],
@@ -550,6 +585,9 @@
           "description": {
             "type": "string",
             "nullable": true
+          },
+          "isApproved": {
+            "type": "boolean"
           },
           "orderItems": {
             "type": "array",
