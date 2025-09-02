@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OnlineEgitim.AdminAPI.Data;
 using OnlineEgitim.AdminAPI.Models;
-using OnlineEgitim.AdminAPI.Services;
 
 namespace OnlineEgitim.AdminAPI.Controllers
 {
@@ -8,22 +9,49 @@ namespace OnlineEgitim.AdminAPI.Controllers
     [Route("api/[controller]")]
     public class PaymentController : ControllerBase
     {
-        private readonly IPaymentService _paymentService;
+        private readonly AppDbContext _context;
 
-        public PaymentController(IPaymentService paymentService)
+        public PaymentController(AppDbContext context)
         {
-            _paymentService = paymentService;
+            _context = context;
         }
 
         [HttpPost]
-        public async Task<IActionResult> ProcessPayment([FromBody] PaymentRequest request)
+        public async Task<IActionResult> Pay([FromBody] PaymentRequest request)
         {
-            var result = await _paymentService.ProcessPaymentAsync(request);
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+            if (user == null) return BadRequest("Kullanıcı bulunamadı!");
 
-            if (!result.Success)
-                return BadRequest(result);
+            var cartItems = await _context.Carts
+                .Where(c => c.UserId == user.Id)
+                .ToListAsync();
 
-            return Ok(result);
+            if (!cartItems.Any()) return BadRequest("Sepet boş!");
+
+            foreach (var item in cartItems)
+            {
+                var purchased = new PurchasedCourse
+                {
+                    UserId = user.Id,
+                    CourseId = item.CourseId,
+                    PurchaseDate = DateTime.Now
+                };
+
+                _context.PurchasedCourses.Add(purchased);
+            }
+
+            _context.Carts.RemoveRange(cartItems);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Ödeme başarılı, kurslar eklendi!" });
         }
+    }
+
+    public class PaymentRequest
+    {
+        public string Email { get; set; }
+        public string CardNumber { get; set; }
+        public string ExpiryDate { get; set; }
+        public string CVV { get; set; }
     }
 }

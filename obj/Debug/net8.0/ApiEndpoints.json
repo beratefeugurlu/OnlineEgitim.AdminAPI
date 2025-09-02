@@ -249,7 +249,7 @@
   },
   {
     "ContainingType": "OnlineEgitim.AdminAPI.Controllers.PaymentController",
-    "Method": "ProcessPayment",
+    "Method": "Pay",
     "RelativePath": "api/Payment",
     "HttpMethod": "POST",
     "IsController": true,
@@ -257,7 +257,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "OnlineEgitim.AdminAPI.Models.PaymentRequest",
+        "Type": "OnlineEgitim.AdminAPI.Controllers.PaymentRequest",
         "IsRequired": true
       }
     ],
@@ -278,6 +278,22 @@
     "Method": "GetUser",
     "RelativePath": "api/Users/{id}",
     "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineEgitim.AdminAPI.Controllers.UsersController",
+    "Method": "DeleteUser",
+    "RelativePath": "api/Users/{id}",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [

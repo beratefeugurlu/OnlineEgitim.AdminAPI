@@ -21,5 +21,8 @@ namespace OnlineEgitim.AdminAPI.Data
 
         // Sipariş Kalemleri
         public DbSet<OrderItem> OrderItems { get; set; }
+
+        // Satın alınan kurslar ✅
+        public DbSet<PurchasedCourse> PurchasedCourses { get; set; }
     }
 }
