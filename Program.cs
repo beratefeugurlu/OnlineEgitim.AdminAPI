@@ -4,10 +4,10 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Controllers
+// API only
 builder.Services.AddControllers();
 
-// Swagger
+// Swagger setup
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -18,26 +18,19 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// EF Core DbContext
+// DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+// Swagger aktif
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "OnlineEgitim.AdminAPI v1");
-        c.RoutePrefix = string.Empty; // 👉 https://localhost:7279 açıldığında direkt Swagger
-    });
-}
-else
-{
-    app.UseExceptionHandler("/Error");
-    app.UseHsts();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "AdminAPI v1");
+ 
+});
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
