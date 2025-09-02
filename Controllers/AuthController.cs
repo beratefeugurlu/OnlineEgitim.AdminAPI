@@ -45,7 +45,7 @@ namespace OnlineEgitim.AdminAPI.Controllers
             return Ok(new
             {
                 message = "Kayıt başarılı! 🎉",
-                user = new { user.Name, user.Email, user.Role }
+                user = new { user.Id, user.Name, user.Email, user.Role }
             });
         }
 
@@ -63,7 +63,20 @@ namespace OnlineEgitim.AdminAPI.Controllers
                 return Unauthorized(new { message = "Şifre hatalı!" });
 
             var token = _tokenService.GenerateToken(user.Email, user.Role);
-            return Ok(new { token = token, role = user.Role, name = user.Name });
+            return Ok(new { token = token, role = user.Role, name = user.Name, id = user.Id });
+        }
+
+        // ✅ Email'e göre kullanıcı getir (ProfileController için)
+        [HttpGet("GetUserByEmail")]
+        public IActionResult GetUserByEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+                return BadRequest(new { message = "Email parametresi gerekli!" });
+
+            var user = _context.Users.FirstOrDefault(u => u.Email.ToLower() == email.ToLower());
+            if (user == null) return NotFound(new { message = "Kullanıcı bulunamadı!" });
+
+            return Ok(new { user.Id, user.Name, user.Email, user.Role });
         }
     }
 
