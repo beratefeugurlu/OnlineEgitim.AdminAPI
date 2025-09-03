@@ -14,6 +14,9 @@ namespace OnlineEgitim.AdminAPI.Models
         // Sipariş tarihi
         public DateTime OrderDate { get; set; } = DateTime.Now;
 
+        // Toplam fiyat (opsiyonel, ödeme için işine yarayabilir)
+        public decimal TotalPrice { get; set; }
+
         // OrderItem ilişkisi
         public ICollection<OrderItem> Items { get; set; } = new List<OrderItem>();
     }

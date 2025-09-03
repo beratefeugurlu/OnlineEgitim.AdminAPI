@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineEgitim.AdminAPI.Data;
 
@@ -11,9 +12,11 @@ using OnlineEgitim.AdminAPI.Data;
 namespace OnlineEgitim.AdminAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250903123148_AddRelationsToOrdersAndPurchasedCourses")]
+    partial class AddRelationsToOrdersAndPurchasedCourses
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +48,7 @@ namespace OnlineEgitim.AdminAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Carts", (string)null);
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("OnlineEgitim.AdminAPI.Models.Course", b =>
@@ -76,7 +79,7 @@ namespace OnlineEgitim.AdminAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Courses", (string)null);
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("OnlineEgitim.AdminAPI.Models.Order", b =>
@@ -100,7 +103,7 @@ namespace OnlineEgitim.AdminAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Orders", (string)null);
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("OnlineEgitim.AdminAPI.Models.OrderItem", b =>
@@ -134,7 +137,7 @@ namespace OnlineEgitim.AdminAPI.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.ToTable("OrderItems", (string)null);
+                    b.ToTable("OrderItems");
                 });
 
             modelBuilder.Entity("OnlineEgitim.AdminAPI.Models.PurchasedCourse", b =>
@@ -170,7 +173,7 @@ namespace OnlineEgitim.AdminAPI.Migrations
 
                     b.HasIndex("UserId1");
 
-                    b.ToTable("PurchasedCourses", (string)null);
+                    b.ToTable("PurchasedCourses");
                 });
 
             modelBuilder.Entity("OnlineEgitim.AdminAPI.Models.User", b =>
@@ -199,7 +202,7 @@ namespace OnlineEgitim.AdminAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("OnlineEgitim.AdminAPI.Models.Cart", b =>

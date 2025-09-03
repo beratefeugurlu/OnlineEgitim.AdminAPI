@@ -24,5 +24,45 @@ namespace OnlineEgitim.AdminAPI.Data
 
         // Satın alınan kurslar ✅
         public DbSet<PurchasedCourse> PurchasedCourses { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Order - User ilişkisi (1-N)
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.User)
+                .WithMany()
+                .HasForeignKey(o => o.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // OrderItem - Order ilişkisi (1-N)
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(oi => oi.Order)
+                .WithMany(o => o.Items)
+                .HasForeignKey(oi => oi.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // OrderItem - Course ilişkisi (1-N)
+            modelBuilder.Entity<OrderItem>()
+                .HasOne<Course>()
+                .WithMany()
+                .HasForeignKey(oi => oi.CourseId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // PurchasedCourse - User ilişkisi (1-N)
+            modelBuilder.Entity<PurchasedCourse>()
+                .HasOne<User>()
+                .WithMany()
+                .HasForeignKey(pc => pc.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // PurchasedCourse - Course ilişkisi (1-N)
+            modelBuilder.Entity<PurchasedCourse>()
+                .HasOne<Course>()
+                .WithMany()
+                .HasForeignKey(pc => pc.CourseId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

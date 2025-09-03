@@ -29,10 +29,14 @@ namespace OnlineEgitim.AdminAPI.Controllers
             var orders = await _orderRepository.GetAllAsync();
             var userOrders = orders.Where(o => o.UserId == userId).ToList();
 
+            if (!userOrders.Any())
+                return Ok(new List<Course>()); // hiç kurs yoksa boş liste döner
+
             var orderItems = await _orderItemRepository.GetAllAsync();
             var userItems = orderItems.Where(i => userOrders.Any(o => o.Id == i.OrderId)).ToList();
 
             var purchasedCourses = new List<Course>();
+
             foreach (var item in userItems)
             {
                 var course = await _courseRepository.GetByIdAsync(item.CourseId);
@@ -40,7 +44,7 @@ namespace OnlineEgitim.AdminAPI.Controllers
                     purchasedCourses.Add(course);
             }
 
-            return Ok(purchasedCourses);
+            return Ok(purchasedCourses); // ✅ direkt Course listesi döndürüyoruz
         }
     }
 }

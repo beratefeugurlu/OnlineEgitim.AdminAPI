@@ -6,17 +6,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OnlineEgitim.AdminAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class AddPurchasedCourses : Migration
+    public partial class AddCategoryToCourse : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<bool>(
-                name: "IsApproved",
-                table: "Courses",
-                type: "bit",
-                nullable: false,
-                defaultValue: false);
+            
 
             migrationBuilder.CreateTable(
                 name: "PurchasedCourses",

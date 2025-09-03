@@ -350,6 +350,18 @@
         }
       }
     },
+    "/api/Course/PurchasedCourses": {
+      "get": {
+        "tags": [
+          "Course"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Course/approve/{id}": {
       "patch": {
         "tags": [
@@ -672,6 +684,10 @@
           "orderDate": {
             "type": "string",
             "format": "date-time"
+          },
+          "totalPrice": {
+            "type": "number",
+            "format": "double"
           },
           "items": {
             "type": "array",

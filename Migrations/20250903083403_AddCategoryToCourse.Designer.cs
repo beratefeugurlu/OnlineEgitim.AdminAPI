@@ -12,8 +12,8 @@ using OnlineEgitim.AdminAPI.Data;
 namespace OnlineEgitim.AdminAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250902190737_AddPurchasedCourses")]
-    partial class AddPurchasedCourses
+    [Migration("20250903083403_AddCategoryToCourse")]
+    partial class AddCategoryToCourse
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

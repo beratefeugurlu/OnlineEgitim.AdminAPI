@@ -232,6 +232,16 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OnlineEgitim.AdminAPI.Controllers.CourseController",
+    "Method": "GetPurchasedCourses",
+    "RelativePath": "api/Course/PurchasedCourses",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OnlineEgitim.AdminAPI.Controllers.OrderController",
     "Method": "GetOrdersByUser",
     "RelativePath": "api/Order/User/{userId}",
