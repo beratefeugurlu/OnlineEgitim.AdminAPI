@@ -274,6 +274,48 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OnlineEgitim.AdminAPI.Controllers.PurchaseController",
+    "Method": "GetAllPurchases",
+    "RelativePath": "api/Purchase/All",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineEgitim.AdminAPI.Controllers.PurchaseController",
+    "Method": "Buy",
+    "RelativePath": "api/Purchase/Buy",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "OnlineEgitim.AdminAPI.Controllers.PurchaseRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OnlineEgitim.AdminAPI.Controllers.PurchaseController",
+    "Method": "GetUserPurchases",
+    "RelativePath": "api/Purchase/User/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OnlineEgitim.AdminAPI.Controllers.UsersController",
     "Method": "GetAllUsers",
     "RelativePath": "api/Users",
