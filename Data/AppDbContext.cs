@@ -29,40 +29,41 @@ namespace OnlineEgitim.AdminAPI.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Order - User ilişkisi (1-N)
+            // Order - User (1-N)
             modelBuilder.Entity<Order>()
                 .HasOne(o => o.User)
                 .WithMany()
                 .HasForeignKey(o => o.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // OrderItem - Order ilişkisi (1-N)
+            // OrderItem - Order (1-N)
             modelBuilder.Entity<OrderItem>()
                 .HasOne(oi => oi.Order)
                 .WithMany(o => o.Items)
                 .HasForeignKey(oi => oi.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // OrderItem - Course ilişkisi (1-N)
+            // OrderItem - Course (1-N)
             modelBuilder.Entity<OrderItem>()
-                .HasOne<Course>()
-                .WithMany()
+                .HasOne(oi => oi.Course)
+                .WithMany(c => c.OrderItems)
                 .HasForeignKey(oi => oi.CourseId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict); // ❌ Cascade değil, aksi halde "multiple cascade paths" hatası çıkıyor
 
-            // PurchasedCourse - User ilişkisi (1-N)
+            // PurchasedCourse - User (1-N)
             modelBuilder.Entity<PurchasedCourse>()
-                .HasOne<User>()
-                .WithMany()
+                .HasOne(pc => pc.User)
+                .WithMany(u => u.PurchasedCourses)
                 .HasForeignKey(pc => pc.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // PurchasedCourse - Course ilişkisi (1-N)
+            // PurchasedCourse - Course (1-N)
             modelBuilder.Entity<PurchasedCourse>()
-                .HasOne<Course>()
-                .WithMany()
+                .HasOne(pc => pc.Course)
+                .WithMany(c => c.PurchasedCourses)
                 .HasForeignKey(pc => pc.CourseId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
+
     }
 }

@@ -11,15 +11,18 @@ namespace OnlineEgitim.AdminAPI.Controllers
         private readonly IRepository<Order> _orderRepository;
         private readonly IRepository<OrderItem> _orderItemRepository;
         private readonly IRepository<Course> _courseRepository;
+        private readonly IRepository<User> _userRepository;
 
         public OrderController(
             IRepository<Order> orderRepository,
             IRepository<OrderItem> orderItemRepository,
-            IRepository<Course> courseRepository)
+            IRepository<Course> courseRepository,
+            IRepository<User> userRepository)
         {
             _orderRepository = orderRepository;
             _orderItemRepository = orderItemRepository;
             _courseRepository = courseRepository;
+            _userRepository = userRepository;
         }
 
         // Kullanıcının satın aldığı kursları getir
@@ -30,21 +33,32 @@ namespace OnlineEgitim.AdminAPI.Controllers
             var userOrders = orders.Where(o => o.UserId == userId).ToList();
 
             if (!userOrders.Any())
-                return Ok(new List<Course>()); // hiç kurs yoksa boş liste döner
+                return Ok(new List<object>());
 
             var orderItems = await _orderItemRepository.GetAllAsync();
             var userItems = orderItems.Where(i => userOrders.Any(o => o.Id == i.OrderId)).ToList();
 
-            var purchasedCourses = new List<Course>();
+            var purchasedCourses = new List<object>();
+
+            var user = await _userRepository.GetByIdAsync(userId);
 
             foreach (var item in userItems)
             {
                 var course = await _courseRepository.GetByIdAsync(item.CourseId);
                 if (course != null)
-                    purchasedCourses.Add(course);
+                {
+                    purchasedCourses.Add(new
+                    {
+                        UserName = user?.Name,
+                        UserEmail = user?.Email,
+                        CourseTitle = course.Title,
+                        CoursePrice = course.Price,
+                        PurchaseDate = DateTime.Now
+                    });
+                }
             }
 
-            return Ok(purchasedCourses); // ✅ direkt Course listesi döndürüyoruz
+            return Ok(purchasedCourses);
         }
     }
 }

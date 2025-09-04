@@ -1,25 +1,27 @@
-﻿namespace OnlineEgitim.AdminAPI.Models
+﻿using OnlineEgitim.AdminAPI.Models;
+
+public class Course
 {
-    public class Course
-    {
-        public int Id { get; set; }
+    public int Id { get; set; }
 
-        // Kurs başlığı
-        public string Title { get; set; } = string.Empty;
+    // Kurs başlığı
+    public string Title { get; set; } = string.Empty;
 
-        // Eğitmen bilgisi
-        public string Instructor { get; set; } = string.Empty;
+    // Eğitmen bilgisi
+    public string Instructor { get; set; } = string.Empty;
 
-        // Fiyat
-        public decimal Price { get; set; }
+    // Fiyat
+    public decimal Price { get; set; }
 
-        // Açıklama
-        public string Description { get; set; } = string.Empty;
+    // Açıklama
+    public string Description { get; set; } = string.Empty;
 
-        // ✅ Admin onayı (ekledik)
-        public bool IsApproved { get; set; } = false;
+    // ✅ Admin onayı
+    public bool IsApproved { get; set; } = false;
 
-        // OrderItem ilişkisi
-        public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
-    }
+    // OrderItem ilişkisi
+    public ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+
+    // ✅ Kursu satın alan kullanıcılar
+    public ICollection<PurchasedCourse> PurchasedCourses { get; set; } = new List<PurchasedCourse>();
 }

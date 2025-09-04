@@ -645,6 +645,13 @@
               "$ref": "#/components/schemas/OrderItem"
             },
             "nullable": true
+          },
+          "purchasedCourses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchasedCourse"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -753,6 +760,34 @@
         },
         "additionalProperties": false
       },
+      "PurchasedCourse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "courseId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "purchaseDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "course": {
+            "$ref": "#/components/schemas/Course"
+          }
+        },
+        "additionalProperties": false
+      },
       "RegisterRequest": {
         "required": [
           "email",
@@ -801,6 +836,13 @@
           },
           "role": {
             "type": "string",
+            "nullable": true
+          },
+          "purchasedCourses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PurchasedCourse"
+            },
             "nullable": true
           }
         },

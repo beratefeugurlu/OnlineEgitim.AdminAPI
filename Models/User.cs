@@ -1,11 +1,13 @@
-﻿namespace OnlineEgitim.AdminAPI.Models
+﻿using OnlineEgitim.AdminAPI.Models;
+
+public class User
 {
-    public class User
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public string Role { get; set; }
-    }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+    public string PasswordHash { get; set; }
+    public string Role { get; set; }
+
+    // ✅ Kullanıcının satın aldığı kurslar
+    public ICollection<PurchasedCourse> PurchasedCourses { get; set; } = new List<PurchasedCourse>();
 }

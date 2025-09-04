@@ -146,7 +146,7 @@
     "Parameters": [
       {
         "Name": "course",
-        "Type": "OnlineEgitim.AdminAPI.Models.Course",
+        "Type": "Course",
         "IsRequired": true
       }
     ],
@@ -183,7 +183,7 @@
       },
       {
         "Name": "updatedCourse",
-        "Type": "OnlineEgitim.AdminAPI.Models.Course",
+        "Type": "Course",
         "IsRequired": true
       }
     ],
