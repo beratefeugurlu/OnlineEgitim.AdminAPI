@@ -1,5 +1,6 @@
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\appsettings.json
+C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\OnlineEgitim.AdminAPI.staticwebassets.runtime.json
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\OnlineEgitim.AdminAPI.staticwebassets.endpoints.json
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\OnlineEgitim.AdminAPI.exe
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\OnlineEgitim.AdminAPI.deps.json

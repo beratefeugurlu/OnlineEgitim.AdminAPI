@@ -230,19 +230,45 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/Course"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Course"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Course"
+                "type": "object",
+                "properties": {
+                  "Title": {
+                    "type": "string"
+                  },
+                  "Instructor": {
+                    "type": "string"
+                  },
+                  "Price": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "Image": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "Title": {
+                  "style": "form"
+                },
+                "Instructor": {
+                  "style": "form"
+                },
+                "Price": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "Image": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -680,6 +706,10 @@
         "additionalProperties": false
       },
       "Course": {
+        "required": [
+          "instructor",
+          "title"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -687,23 +717,33 @@
             "format": "int32"
           },
           "title": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 200,
+            "minLength": 1,
+            "type": "string"
           },
           "instructor": {
-            "type": "string",
-            "nullable": true
+            "maxLength": 100,
+            "minLength": 1,
+            "type": "string"
           },
           "price": {
+            "maximum": 99999,
+            "minimum": 0,
             "type": "number",
             "format": "double"
           },
           "description": {
+            "maxLength": 1000,
             "type": "string",
             "nullable": true
           },
           "isApproved": {
             "type": "boolean"
+          },
+          "imagePath": {
+            "maxLength": 300,
+            "type": "string",
+            "nullable": true
           },
           "orderItems": {
             "type": "array",

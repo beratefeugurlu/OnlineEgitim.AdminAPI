@@ -58,7 +58,8 @@ namespace OnlineEgitim.AdminAPI.Controllers
                 UserEmail = pc.User.Email,
                 CourseTitle = pc.Course.Title,
                 CoursePrice = pc.Course.Price,
-                PurchaseDate = pc.PurchaseDate
+                PurchaseDate = pc.PurchaseDate,
+                ImagePath = pc.Course.ImagePath // ✅ eklendi
             });
 
             return Ok(result);
@@ -80,7 +81,8 @@ namespace OnlineEgitim.AdminAPI.Controllers
                 UserEmail = pc.User.Email,
                 CourseTitle = pc.Course.Title,
                 CoursePrice = pc.Course.Price,
-                PurchaseDate = pc.PurchaseDate
+                PurchaseDate = pc.PurchaseDate,
+                ImagePath = pc.Course.ImagePath // ✅ eklendi
             });
 
             return Ok(result);

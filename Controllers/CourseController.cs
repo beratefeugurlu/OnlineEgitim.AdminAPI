@@ -26,7 +26,7 @@ namespace OnlineEgitim.AdminAPI.Controllers
         {
             var courses = await _courseRepository.GetAllAsync();
             if (courses == null || !courses.Any())
-                return Ok(new List<Course>()); // boş da olsa 200 dönsün
+                return Ok(new List<Course>());
 
             return Ok(courses);
         }
@@ -51,7 +51,7 @@ namespace OnlineEgitim.AdminAPI.Controllers
             return Ok(course);
         }
 
-        // ✅ Yeni ekleme: Satın alınan kursları admin görebilsin
+        // ✅ Satın alınan kurslar
         [HttpGet("PurchasedCourses")]
         public async Task<IActionResult> GetPurchasedCourses()
         {
@@ -71,14 +71,41 @@ namespace OnlineEgitim.AdminAPI.Controllers
             return Ok(purchased);
         }
 
-        // POST: api/Course
+        // ✅ POST: api/Course (multipart/form-data destekli)
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Course course)
+        public async Task<IActionResult> Create([FromForm] CourseCreateDto dto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            course.IsApproved = false; // yeni eklenenler onaysız
+            string imagePath = null;
+            if (dto.Image != null)
+            {
+                var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads");
+                if (!Directory.Exists(uploads))
+                    Directory.CreateDirectory(uploads);
+
+                var fileName = Guid.NewGuid() + Path.GetExtension(dto.Image.FileName);
+                var filePath = Path.Combine(uploads, fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await dto.Image.CopyToAsync(stream);
+                }
+
+                imagePath = "/uploads/" + fileName;
+            }
+
+            var course = new Course
+            {
+                Title = dto.Title,
+                Description = dto.Description,
+                Price = dto.Price,
+                Instructor = dto.Instructor,
+                ImagePath = imagePath, // ✅ artık resim yolu da DB’ye kaydediliyor
+                IsApproved = false
+            };
+
             await _courseRepository.AddAsync(course);
             await _courseRepository.SaveChangesAsync();
 
@@ -96,6 +123,7 @@ namespace OnlineEgitim.AdminAPI.Controllers
             course.Description = updatedCourse.Description;
             course.Price = updatedCourse.Price;
             course.Instructor = updatedCourse.Instructor;
+            course.ImagePath = updatedCourse.ImagePath; // ✅ resim güncelleme desteği
 
             _courseRepository.Update(course);
             await _courseRepository.SaveChangesAsync();
@@ -129,5 +157,15 @@ namespace OnlineEgitim.AdminAPI.Controllers
 
             return Ok(new { message = "Kurs silindi ❌" });
         }
+    }
+
+    // ✅ DTO
+    public class CourseCreateDto
+    {
+        public string Title { get; set; }
+        public string Instructor { get; set; }
+        public decimal Price { get; set; }
+        public string Description { get; set; }
+        public IFormFile Image { get; set; }
     }
 }
