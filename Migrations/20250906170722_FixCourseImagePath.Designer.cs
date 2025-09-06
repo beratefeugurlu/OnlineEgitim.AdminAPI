@@ -12,8 +12,8 @@ using OnlineEgitim.AdminAPI.Data;
 namespace OnlineEgitim.AdminAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250905094653_AddImagePathToCourse")]
-    partial class AddImagePathToCourse
+    [Migration("20250906170722_FixCourseImagePath")]
+    partial class FixCourseImagePath
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

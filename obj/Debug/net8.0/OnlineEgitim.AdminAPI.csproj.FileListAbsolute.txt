@@ -48,6 +48,7 @@ C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Mono.TextTemplating.dll
+C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\berat\Desktop\OnlineEgitim\OnlineEgitim.AdminAPI\OnlineEgitim.AdminAPI\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll

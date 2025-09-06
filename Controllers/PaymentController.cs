@@ -49,9 +49,9 @@ namespace OnlineEgitim.AdminAPI.Controllers
 
     public class PaymentRequest
     {
-        public string Email { get; set; }
-        public string CardNumber { get; set; }
-        public string ExpiryDate { get; set; }
-        public string CVV { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string CardNumber { get; set; } = string.Empty;
+        public string ExpiryDate { get; set; } = string.Empty;
+        public string CVV { get; set; } = string.Empty;
     }
 }

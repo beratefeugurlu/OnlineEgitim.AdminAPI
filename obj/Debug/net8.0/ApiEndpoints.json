@@ -145,29 +145,9 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Title",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Instructor",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Price",
-        "Type": "System.Decimal",
-        "IsRequired": false
-      },
-      {
-        "Name": "Description",
-        "Type": "System.String",
-        "IsRequired": false
-      },
-      {
-        "Name": "Image",
-        "Type": "Microsoft.AspNetCore.Http.IFormFile",
-        "IsRequired": false
+        "Name": "model",
+        "Type": "Course",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -226,42 +206,6 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "OnlineEgitim.AdminAPI.Controllers.CourseController",
-    "Method": "ApproveCourse",
-    "RelativePath": "api/Course/approve/{id}",
-    "HttpMethod": "PATCH",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OnlineEgitim.AdminAPI.Controllers.CourseController",
-    "Method": "GetApprovedCourses",
-    "RelativePath": "api/Course/approved",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "OnlineEgitim.AdminAPI.Controllers.CourseController",
-    "Method": "GetPurchasedCourses",
-    "RelativePath": "api/Course/PurchasedCourses",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
     "ContainingType": "OnlineEgitim.AdminAPI.Controllers.OrderController",
     "Method": "GetOrdersByUser",
     "RelativePath": "api/Order/User/{userId}",
@@ -295,7 +239,7 @@
   },
   {
     "ContainingType": "OnlineEgitim.AdminAPI.Controllers.PurchaseController",
-    "Method": "GetAllPurchases",
+    "Method": "GetAll",
     "RelativePath": "api/Purchase/All",
     "HttpMethod": "GET",
     "IsController": true,
@@ -321,7 +265,7 @@
   },
   {
     "ContainingType": "OnlineEgitim.AdminAPI.Controllers.PurchaseController",
-    "Method": "GetUserPurchases",
+    "Method": "GetByUser",
     "RelativePath": "api/Purchase/User/{userId}",
     "HttpMethod": "GET",
     "IsController": true,

@@ -230,61 +230,23 @@
         ],
         "requestBody": {
           "content": {
-            "multipart/form-data": {
+            "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "Title": {
-                    "type": "string"
-                  },
-                  "Instructor": {
-                    "type": "string"
-                  },
-                  "Price": {
-                    "type": "number",
-                    "format": "double"
-                  },
-                  "Description": {
-                    "type": "string"
-                  },
-                  "Image": {
-                    "type": "string",
-                    "format": "binary"
-                  }
-                }
-              },
-              "encoding": {
-                "Title": {
-                  "style": "form"
-                },
-                "Instructor": {
-                  "style": "form"
-                },
-                "Price": {
-                  "style": "form"
-                },
-                "Description": {
-                  "style": "form"
-                },
-                "Image": {
-                  "style": "form"
-                }
+                "$ref": "#/components/schemas/Course"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Course"
               }
             }
           }
         },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Course/approved": {
-      "get": {
-        "tags": [
-          "Course"
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -355,41 +317,6 @@
         }
       },
       "delete": {
-        "tags": [
-          "Course"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Course/PurchasedCourses": {
-      "get": {
-        "tags": [
-          "Course"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Course/approve/{id}": {
-      "patch": {
         "tags": [
           "Course"
         ],
@@ -496,6 +423,18 @@
         }
       }
     },
+    "/api/Purchase/All": {
+      "get": {
+        "tags": [
+          "Purchase"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Purchase/User/{userId}": {
       "get": {
         "tags": [
@@ -511,18 +450,6 @@
               "format": "int32"
             }
           }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/Purchase/All": {
-      "get": {
-        "tags": [
-          "Purchase"
         ],
         "responses": {
           "200": {
